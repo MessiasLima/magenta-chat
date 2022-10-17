@@ -1,7 +1,9 @@
 package io.github.messiaslima.feature.chat
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +18,10 @@ fun ChatView(viewModel: ChatViewModel = viewModel()) {
         val sender by viewModel.sender.collectAsState()
 
         TopBar(onNavigationItemClicked = {}, onMenuClicked = { viewModel.toggleSender() })
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        BottomBar(modifier = Modifier.fillMaxWidth(), onSendMessageClicked = {})
     }
 }
 

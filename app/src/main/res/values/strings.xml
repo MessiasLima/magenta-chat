@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Magenta Chat</string>
+    <string name="message_placeholder">It\'s a muzmatch!</string>
 </resources>
