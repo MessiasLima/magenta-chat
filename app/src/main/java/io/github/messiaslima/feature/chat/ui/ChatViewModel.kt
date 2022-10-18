@@ -1,14 +1,13 @@
-package io.github.messiaslima.feature.chat
+package io.github.messiaslima.feature.chat.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.messiaslima.domain.Message
-import io.github.messiaslima.domain.Sender
+import io.github.messiaslima.core.database.message.Sender
+import io.github.messiaslima.feature.chat.usecase.ChatRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,13 +27,8 @@ class ChatViewModel @Inject constructor(
     }
 
     fun sendMessage(message: String) {
-        val newMessage = Message(
-            id = null,
-            text = message,
-            sender = _sender.value,
-            date = Date()
-        )
-
-        viewModelScope.launch { chatRepository.sendMessage(newMessage) }
+        viewModelScope.launch {
+            chatRepository.sendMessage(text = message, sender = _sender.value)
+        }
     }
 }
