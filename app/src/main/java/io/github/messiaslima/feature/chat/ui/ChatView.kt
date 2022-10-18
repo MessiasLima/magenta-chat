@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,19 +29,28 @@ import io.github.messiaslima.feature.chat.usecase.ChatUiModel
 import io.github.messiaslima.feature.chat.usecase.MainUserMessageUiModel
 import io.github.messiaslima.feature.chat.usecase.OtherUserMessageUiModel
 import io.github.messiaslima.feature.chat.usecase.SectionUiModel
+import kotlinx.coroutines.launch
 
 @Composable
 fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         val sender by viewModel.sender.collectAsState()
         val messages by viewModel.messages.collectAsState(initial = emptyList())
+        val listState = rememberLazyListState()
+        val scope = rememberCoroutineScope()
 
         TopBar(
             onNavigationItemClicked = onNavigationIconClicked,
             onMenuClicked = { viewModel.toggleSender() },
         )
 
-        LazyColumn(modifier = Modifier.weight(1f), reverseLayout = true) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            reverseLayout = true,
+            state = listState
+        ) {
             items(messages) { item ->
                 ChatItem(item)
             }
@@ -51,6 +62,7 @@ fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: ()
 
         BottomBar(modifier = Modifier.fillMaxWidth(), onSendMessageClicked = {
             viewModel.sendMessage(it)
+            scope.launch { listState.animateScrollToItem(0) }
         })
     }
 }
