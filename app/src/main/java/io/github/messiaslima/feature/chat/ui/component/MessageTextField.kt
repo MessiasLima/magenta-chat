@@ -1,4 +1,4 @@
-package io.github.messiaslima.feature.chat.component
+package io.github.messiaslima.feature.chat.ui.component
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box

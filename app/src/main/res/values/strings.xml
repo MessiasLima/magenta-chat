@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Magenta Chat</string>
     <string name="message_placeholder">It\'s a muzmatch!</string>
+    <string name="today_at">Today at %1s</string>
+    <string name="yesterdat_at">Yesterday at %1s</string>
+    <string name="at">at</string>
 </resources>
