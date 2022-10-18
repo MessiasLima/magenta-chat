@@ -8,7 +8,7 @@ import javax.inject.Inject
 class ChatRepository @Inject constructor(
     private val messageDao: MessageDao
 ) {
-    fun sendMessage(newMessage: Message) {
+    suspend fun sendMessage(newMessage: Message) {
         val entity = MessageEntity(
             id = null,
             text = newMessage.text,

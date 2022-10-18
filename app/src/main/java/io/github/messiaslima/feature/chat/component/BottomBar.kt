@@ -1,23 +1,14 @@
 package io.github.messiaslima.feature.chat.component
 
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -49,7 +40,10 @@ fun BottomBar(modifier: Modifier = Modifier, onSendMessageClicked: (String) -> U
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            SendButton { onSendMessageClicked(message) }
+            SendButton {
+                onSendMessageClicked(message)
+                message = ""
+            }
         }
     }
 }
@@ -60,10 +54,7 @@ fun SendButton(onClick: () -> Unit) {
         modifier = Modifier
             .clip(CircleShape)
             .background(brush = Brush.linearGradient(colors = listOf(Magenta, MagentaAlt))),
-        onClick = {
-            Log.i("SendButton", "Clicked")
-            onClick()
-        },
+        onClick = onClick,
     ) {
         Icon(
             imageVector = Icons.Default.Send,

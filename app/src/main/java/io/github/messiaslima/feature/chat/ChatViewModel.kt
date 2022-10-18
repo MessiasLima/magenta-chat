@@ -1,11 +1,13 @@
 package io.github.messiaslima.feature.chat
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.messiaslima.domain.Message
 import io.github.messiaslima.domain.Sender
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
@@ -17,7 +19,7 @@ class ChatViewModel @Inject constructor(
     val sender = _sender.asStateFlow()
 
     fun toggleSender() {
-        _sender.value = when(_sender.value) {
+        _sender.value = when (_sender.value) {
             Sender.MAIN_USER -> Sender.OTHER_USER
             Sender.OTHER_USER -> Sender.MAIN_USER
         }
@@ -31,6 +33,6 @@ class ChatViewModel @Inject constructor(
             date = Date()
         )
 
-        chatRepository.sendMessage(newMessage)
+        viewModelScope.launch { chatRepository.sendMessage(newMessage) }
     }
 }

@@ -6,5 +6,5 @@ import androidx.room.Insert
 @Dao
 interface MessageDao {
     @Insert
-    fun save(message: MessageEntity)
+    suspend fun save(message: MessageEntity)
 }
