@@ -41,7 +41,7 @@ fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: ()
 @Composable
 private fun ChatItem(item: ChatUiModel) {
     when(item) {
-        is MainUserMessageUiModel -> MainUserMessage(uiModel = item)
+        is MainUserMessageUiModel -> MainUserMessage(modifier = Modifier.fillMaxWidth(), uiModel = item)
         is OtherUserMessageUiModel -> OtherUserMessage(uiModel = item)
         is SectionUiModel -> Section(modifier = Modifier.fillMaxWidth(), sectionUiModel = item)
     }
