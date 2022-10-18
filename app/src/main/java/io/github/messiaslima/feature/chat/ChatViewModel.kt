@@ -2,13 +2,17 @@ package io.github.messiaslima.feature.chat
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.github.messiaslima.domain.Message
 import io.github.messiaslima.domain.Sender
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatViewModel @Inject constructor() : ViewModel() {
+class ChatViewModel @Inject constructor(
+    private val chatRepository: ChatRepository
+) : ViewModel() {
     private val _sender = MutableStateFlow(Sender.MAIN_USER)
     val sender = _sender.asStateFlow()
 
@@ -17,5 +21,16 @@ class ChatViewModel @Inject constructor() : ViewModel() {
             Sender.MAIN_USER -> Sender.OTHER_USER
             Sender.OTHER_USER -> Sender.MAIN_USER
         }
+    }
+
+    fun sendMessage(message: String) {
+        val newMessage = Message(
+            id = null,
+            text = message,
+            sender = _sender.value,
+            date = Date()
+        )
+
+        chatRepository.sendMessage(newMessage)
     }
 }
