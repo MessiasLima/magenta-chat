@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -36,7 +37,8 @@ fun MainUserMessage(modifier: Modifier = Modifier, uiModel: MainUserMessageUiMod
             modifier = Modifier
                 .clip(shape)
                 .background(Brush.linearGradient(colors = listOf(Magenta, MagentaAlt)))
-                .padding(vertical = 4.dp, horizontal = 12.dp),
+                .padding(vertical = 4.dp, horizontal = 12.dp)
+                .widthIn(max = 220.dp),
         ) {
             Text(text = uiModel.text, color = MaterialTheme.colors.onPrimary)
         }
