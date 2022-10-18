@@ -11,6 +11,7 @@ buildscript {
         hilt_version = '2.44'
         junit_version = '4.13.2'
         kotlin_version = '1.6.10'
+        kotlin_fixture_version = '1.2.0'
         lifecycle_version = '2.6.0-alpha02'
         room_version = '2.4.3'
     }

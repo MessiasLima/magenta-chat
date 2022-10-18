@@ -71,6 +71,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     testImplementation "junit:junit:$junit_version"
+    testImplementation "com.appmattus.fixture:fixture:$kotlin_fixture_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
