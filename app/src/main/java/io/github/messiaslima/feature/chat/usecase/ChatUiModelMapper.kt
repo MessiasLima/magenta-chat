@@ -17,10 +17,6 @@ class ChatUiModelMapper @Inject constructor(
             val previousMessage = messages.getOrNull(index + 1)
             val nextMessage = messages.getOrNull(index - 1)
 
-            if (shouldAddSection(currentMessage = message, previousMessage = previousMessage)) {
-                uiModels.add(sectionUiModelMapper.map(message))
-            }
-
             val shouldShowTail = nextMessage?.let {
                 shouldShowTail(currentMessage = message, nextMessage = it)
             } ?: true // If there is no next message, the current one is the most recent
@@ -38,6 +34,10 @@ class ChatUiModelMapper @Inject constructor(
             }
 
             uiModels.add(messageModel)
+
+            if (shouldAddSection(currentMessage = message, previousMessage = previousMessage)) {
+                uiModels.add(sectionUiModelMapper.map(message))
+            }
         }
 
         return uiModels
@@ -55,7 +55,7 @@ class ChatUiModelMapper @Inject constructor(
     ): Boolean {
         return previousMessage?.let {
             // if the time difference is more than 1 hour, whe should show the section
-            return@let it.date.time - currentMessage.date.time > SECTION_TIME_THRESHOLD
+            return@let (currentMessage.date.time - it.date.time) > SECTION_TIME_THRESHOLD
         } ?: true // if there is no previous message, we should show the section
     }
 
