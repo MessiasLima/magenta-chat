@@ -13,11 +13,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.messiaslima.ui.theme.MagentaChatTheme
 
 @Composable
-fun ChatView(viewModel: ChatViewModel = viewModel()) {
+fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
         val sender by viewModel.sender.collectAsState()
 
-        TopBar(onNavigationItemClicked = {}, onMenuClicked = { viewModel.toggleSender() })
+        TopBar(onNavigationItemClicked = onNavigationIconClicked, onMenuClicked = { viewModel.toggleSender() })
 
         Spacer(modifier = Modifier.weight(1f))
 
@@ -29,6 +29,6 @@ fun ChatView(viewModel: ChatViewModel = viewModel()) {
 @Preview(showSystemUi = true)
 private fun ChatViewPreview() {
     MagentaChatTheme {
-        ChatView()
+        ChatView(onNavigationIconClicked = {})
     }
 }
