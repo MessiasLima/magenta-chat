@@ -42,8 +42,10 @@ fun BottomBar(modifier: Modifier = Modifier, onSendMessageClicked: (String) -> U
             Spacer(modifier = Modifier.width(16.dp))
 
             SendButton {
-                onSendMessageClicked(message)
-                message = ""
+                if (message.isNotBlank()) {
+                    onSendMessageClicked(message)
+                    message = ""
+                }
             }
         }
     }
