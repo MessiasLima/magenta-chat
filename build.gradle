@@ -12,7 +12,9 @@ buildscript {
         junit_version = '4.13.2'
         kotlin_version = '1.6.10'
         kotlin_fixture_version = '1.2.0'
+        kotlin_coroutines_test_version = '1.6.4'
         lifecycle_version = '2.6.0-alpha02'
+        mockk_version = '1.12.5'
         room_version = '2.4.3'
     }
 }
