@@ -18,6 +18,8 @@ class ChatViewModel @Inject constructor(
     private val _sender = MutableStateFlow(Sender.MAIN_USER)
     val sender = _sender.asStateFlow()
 
+    val messages = chatRepository.findAdd()
+
     fun toggleSender() {
         _sender.value = when (_sender.value) {
             Sender.MAIN_USER -> Sender.OTHER_USER

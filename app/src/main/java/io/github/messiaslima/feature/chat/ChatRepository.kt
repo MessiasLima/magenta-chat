@@ -18,4 +18,6 @@ class ChatRepository @Inject constructor(
 
         messageDao.save(entity)
     }
+
+    fun findAdd() = messageDao.findAll()
 }
