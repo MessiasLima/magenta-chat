@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.messiaslima.feature.chat.ChatView
-import io.github.messiaslima.ui.theme.MagentaChatTheme
+import io.github.messiaslima.core.ui.theme.MagentaChatTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

@@ -10,7 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.messiaslima.ui.theme.MagentaChatTheme
+import io.github.messiaslima.core.ui.theme.MagentaChatTheme
+import io.github.messiaslima.feature.chat.component.BottomBar
+import io.github.messiaslima.feature.chat.component.TopBar
 
 @Composable
 fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: () -> Unit) {
@@ -21,7 +23,9 @@ fun ChatView(viewModel: ChatViewModel = viewModel(), onNavigationIconClicked: ()
 
         Spacer(modifier = Modifier.weight(1f))
 
-        BottomBar(modifier = Modifier.fillMaxWidth(), onSendMessageClicked = {})
+        BottomBar(modifier = Modifier.fillMaxWidth(), onSendMessageClicked = {
+            viewModel.sendMessage(it)
+        })
     }
 }
 

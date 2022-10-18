@@ -1,4 +1,4 @@
-package io.github.messiaslima.feature.chat
+package io.github.messiaslima.feature.chat.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer
@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.messiaslima.R
-import io.github.messiaslima.ui.theme.LightGray
-import io.github.messiaslima.ui.theme.MagentaChatTheme
+import io.github.messiaslima.core.ui.theme.LightGray
+import io.github.messiaslima.core.ui.theme.MagentaChatTheme
 
 @Composable
 fun TopBar(

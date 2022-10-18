@@ -1,4 +1,4 @@
-package io.github.messiaslima.ui.theme
+package io.github.messiaslima.core.ui.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
