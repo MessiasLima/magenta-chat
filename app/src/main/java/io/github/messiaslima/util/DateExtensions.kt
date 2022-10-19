@@ -16,13 +16,16 @@ val Date.isYesterday: Boolean
 val Date.isInThisWeek: Boolean
     get() {
         val now = Calendar.getInstance()
-        now.timeInMillis = time
 
-        val endOfTheWeek = Calendar.getInstance().apply {
-            add(Calendar.DATE, 7)
+        val subjectDate = Calendar.getInstance()
+        subjectDate.timeInMillis = time
+
+        val startOfTheWeek = Calendar.getInstance().apply {
+            add(Calendar.DATE, -7)
         }
 
-        return now.timeInMillis < endOfTheWeek.timeInMillis
+        return subjectDate.timeInMillis < now.timeInMillis &&
+            subjectDate.timeInMillis > startOfTheWeek.timeInMillis
     }
 
 private fun isDateIn(date: Date, variable: Int): Boolean {

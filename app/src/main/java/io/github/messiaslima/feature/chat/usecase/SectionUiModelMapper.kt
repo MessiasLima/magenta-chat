@@ -6,10 +6,8 @@ import io.github.messiaslima.util.isInThisWeek
 import io.github.messiaslima.util.isToday
 import io.github.messiaslima.util.isYesterday
 import io.github.messiaslima.util.resourceprovider.ResourceProvider
-import android.text.format.DateFormat
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 import javax.inject.Inject
 
 class SectionUiModelMapper @Inject constructor(
@@ -23,8 +21,7 @@ class SectionUiModelMapper @Inject constructor(
     }
 
     private fun parseDefaultSection(message: MessageEntity): SectionUiModel {
-        val at = resourceProvider.getString(R.string.at)
-        val text = DateFormat.format("dd/MM/yyyy $at HH:mm", message.date).toString()
+        val text = parseDate(message.date, "dd/MM/yyyy HH:mm")
         return SectionUiModel(text = text)
     }
 
