@@ -16,7 +16,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "io.github.messiaslima.testing.HiltTestRunner"
+
         vectorDrawables {
             useSupportLibrary true
         }
@@ -51,35 +52,53 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    testOptions {
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
 }
 
 dependencies {
-
+    // Core dependencies
     implementation "androidx.core:core-ktx:$androidx_core_ktx_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidx_lifecycle_ktx_version"
+
+    // Compose related dependencies
     implementation "androidx.activity:activity-compose:$androidx_activity_compose_version"
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
     implementation "androidx.compose.material:material:$compose_material_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose_ui_version")
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
 
+    // Hilt related dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
 
+    // Room related dependencies
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    // Unit testing dependencies
     testImplementation "junit:junit:$junit_version"
     testImplementation "com.appmattus.fixture:fixture:$kotlin_fixture_version"
     testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutines_test_version"
 
+    // Instrumentation tests related dependecies
+    androidTestImplementation "androidx.test:core:1.5.0-beta01"
     androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
 }
 
 kapt {

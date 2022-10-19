@@ -42,7 +42,7 @@ fun TopBar(
                 Icon(
                     modifier = Modifier.size(32.dp),
                     imageVector = Icons.Default.KeyboardArrowLeft,
-                    contentDescription = "Navigation icon",
+                    contentDescription = "navigation icon",
                     tint = MaterialTheme.colors.primary
                 )
             }
