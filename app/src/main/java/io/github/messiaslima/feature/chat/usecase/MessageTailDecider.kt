@@ -1,9 +1,8 @@
 package io.github.messiaslima.feature.chat.usecase
 
+import androidx.annotation.VisibleForTesting
 import io.github.messiaslima.core.database.message.MessageEntity
 import javax.inject.Inject
-
-private const val TAIL_TIME_THRESHOLD = 1000 * 20 // 20 seconds
 
 class MessageTailDecider @Inject constructor() {
     fun shouldShowTail(currentMessage: MessageEntity, nextMessage: MessageEntity?): Boolean {
@@ -26,4 +25,9 @@ class MessageTailDecider @Inject constructor() {
         currentMessage: MessageEntity,
         nextMessage: MessageEntity
     ) = nextMessage.date.time - currentMessage.date.time > TAIL_TIME_THRESHOLD
+
+    companion object {
+        @VisibleForTesting
+        const val TAIL_TIME_THRESHOLD = 1000 * 20 // 20 seconds
+    }
 }
