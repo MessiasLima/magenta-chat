@@ -70,7 +70,7 @@ fun TopBar(
                 Icon(
                     modifier = Modifier.size(32.dp),
                     painter = painterResource(id = R.drawable.ic_more),
-                    contentDescription = "Menu icon",
+                    contentDescription = "menu icon",
                     tint = LightGray
                 )
             }

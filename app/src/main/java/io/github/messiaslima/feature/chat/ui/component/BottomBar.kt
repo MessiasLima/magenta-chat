@@ -16,6 +16,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.messiaslima.R
@@ -33,7 +35,9 @@ fun BottomBar(modifier: Modifier = Modifier, onSendMessageClicked: (String) -> U
             var message by rememberSaveable { mutableStateOf("") }
 
             MessageTextField(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .semantics { contentDescription = "message text field" },
                 value = message,
                 onValueChange = { message = it },
                 placeholder = stringResource(id = R.string.message_placeholder)
@@ -41,7 +45,7 @@ fun BottomBar(modifier: Modifier = Modifier, onSendMessageClicked: (String) -> U
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            SendButton {
+            SendButton(modifier = Modifier.semantics { contentDescription = "send message" }) {
                 if (message.isNotBlank()) {
                     onSendMessageClicked(message)
                     message = ""
@@ -52,9 +56,9 @@ fun BottomBar(modifier: Modifier = Modifier, onSendMessageClicked: (String) -> U
 }
 
 @Composable
-fun SendButton(onClick: () -> Unit) {
+fun SendButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     IconButton(
-        modifier = Modifier
+        modifier = modifier
             .clip(CircleShape)
             .background(brush = Brush.linearGradient(colors = listOf(Magenta, MagentaAlt))),
         onClick = onClick,
