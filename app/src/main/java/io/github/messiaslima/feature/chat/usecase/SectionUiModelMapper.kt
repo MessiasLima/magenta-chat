@@ -42,6 +42,7 @@ class SectionUiModelMapper @Inject constructor(
         return SectionUiModel(text = text)
     }
 
+    // TODO: Inject this through the constructor
     private fun parseDate(date: Date, pattern: String): String {
         val simpleDateFormat = SimpleDateFormat(pattern, Locale.getDefault())
         return simpleDateFormat.format(date)
