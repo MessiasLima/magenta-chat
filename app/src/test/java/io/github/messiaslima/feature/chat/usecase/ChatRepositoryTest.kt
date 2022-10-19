@@ -33,7 +33,7 @@ class ChatRepositoryTest : UnitTest<ChatRepository>() {
         val fixtSender = fixture<Sender>()
         val fixtEntity = fixture<MessageEntity>()
 
-        every { mockMessageEntityMapper.map(fixtMessage, fixtSender) } returns fixtEntity
+        every { mockMessageEntityMapper.map(fixtMessage, fixtSender, any()) } returns fixtEntity
         coEvery { mockMessageDao.save(fixtEntity) } returns Unit
 
         sut.sendMessage(text = fixtMessage, sender = fixtSender)
