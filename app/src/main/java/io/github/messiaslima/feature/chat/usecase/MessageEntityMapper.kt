@@ -6,10 +6,10 @@ import java.util.*
 import javax.inject.Inject
 
 class MessageEntityMapper @Inject constructor() {
-    fun map(text: String, sender: Sender) = MessageEntity(
+    fun map(text: String, sender: Sender, date: Date = Date()) = MessageEntity(
         id = null,
         text = text,
         sender = sender,
-        date = Date()
+        date = date
     )
 }
